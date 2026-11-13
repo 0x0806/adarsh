@@ -25,7 +25,7 @@ test("project filter and show-all work", async ({ page }) => {
   const cards = page.locator("[data-testid=project-grid] a");
   await expect(cards).toHaveCount(12);
   await page.getByRole("button", { name: /Show all/ }).click();
-  await expect(cards).toHaveCount(36);
+  await expect(cards).toHaveCount(43);
   await page.getByRole("button", { name: "Vulnerable Apps" }).click();
   await expect(cards).toHaveCount(4);
   await expect(page.getByRole("button", { name: "Vulnerable Apps" })).toHaveAttribute("aria-pressed", "true");
@@ -80,7 +80,7 @@ test("mobile menu toggles, exposes state and closes on Escape", async ({ page, i
   await expect(btn).toHaveAttribute("aria-expanded", "false");
   await btn.click();
   await expect(page.getByRole("button", { name: "Close menu" })).toHaveAttribute("aria-expanded", "true");
-  await expect(page.locator("#mobile-menu").getByRole("link", { name: "Work" })).toBeVisible();
+  await expect(page.locator("#mobile-menu").getByRole("link", { name: "Client work" })).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(page.locator("#mobile-menu")).toBeHidden();
 });
@@ -97,4 +97,23 @@ test("has structured data, canonical and skip-friendly landmarks", async ({ page
   await expect(page.locator("main#main")).toHaveCount(1);
   await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1);
   await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
+});
+
+test("client work links to the three live sites", async ({ page }) => {
+  await page.goto("/");
+  const hrefs = await page.locator("[data-testid=works-grid] h3 + p + div a:first-child").evaluateAll((a) => a.map((x) => (x as HTMLAnchorElement).href));
+  expect(hrefs).toEqual(["https://www.energyhub.cafe/", "https://lifestylegym.fit/", "https://thriiievents.com/"]);
+});
+
+test("recognition lists the vendor halls of fame and bounty platforms", async ({ page }) => {
+  await page.goto("/");
+  const sec = page.locator("#recognition");
+  for (const n of ["India Book of Records", "Microsoft MSRC", "Amazon Web Services", "Oracle", "HackerOne", "Bugcrowd", "YesWeHack"]) {
+    await expect(sec.getByText(n, { exact: true })).toBeVisible();
+  }
+});
+
+test("IBR record states the verified achievement", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("#recognition")).toContainText("119 critical web vulnerabilities in 3 hours");
 });

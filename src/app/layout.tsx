@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
+import { recognition } from "@/data/recognition";
 import { site } from "@/data/site";
 
 const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-display", display: "swap" });
@@ -34,7 +35,7 @@ const jsonLd = {
   url: site.url,
   email: `mailto:${site.email}`,
   image: site.avatar,
-  sameAs: site.socials.map((s) => s.href),
+  sameAs: [...site.socials.map((s) => s.href), ...recognition.flatMap((r) => (r.handle && r.href ? [r.href] : []))],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

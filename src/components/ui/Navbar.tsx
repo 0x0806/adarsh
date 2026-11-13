@@ -5,7 +5,9 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const links = [
   { name: "About", id: "about" },
-  { name: "Work", id: "projects" },
+  { name: "Client work", id: "works" },
+  { name: "Recognition", id: "recognition" },
+  { name: "Open source", id: "projects" },
   { name: "Contact", id: "contact" },
 ];
 
