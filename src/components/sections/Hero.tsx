@@ -36,6 +36,13 @@ export default function Hero() {
             security consulting, and building open-source tools for the rest of the field.
           </p>
 
+          <p className="enter mt-6 max-w-xl text-[15px] leading-relaxed" style={{ "--i": 2 } as React.CSSProperties}>
+            <a href="#recognition" className="font-semibold underline decoration-signal decoration-2 underline-offset-4 transition-colors hover:text-signal">
+              India Book of Records achiever
+            </a>
+            <span className="text-dim"> for finding 119 critical web vulnerabilities in 3 hours.</span>
+          </p>
+
           <div className="enter mt-9 flex flex-wrap gap-3" style={{ "--i": 3 } as React.CSSProperties}>
             <a
               href="#projects"

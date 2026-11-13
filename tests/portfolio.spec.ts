@@ -117,3 +117,9 @@ test("IBR record states the verified achievement", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("#recognition")).toContainText("119 critical web vulnerabilities in 3 hours");
 });
+
+test("hero leads with the IBR record and links to recognition", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("link", { name: "India Book of Records achiever" }).click();
+  await expect(page.locator("#recognition")).toBeInViewport();
+});
