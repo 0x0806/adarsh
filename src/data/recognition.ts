@@ -16,5 +16,5 @@ export const recognition: Recognition[] = [
   { name: "Oracle", group: "Vendor Hall of Fame" },
   { name: "HackerOne", group: "Bounty platform", handle: "adarshsreedhar", href: "https://hackerone.com/adarshsreedhar?type=user" },
   { name: "Bugcrowd", group: "Bounty platform", handle: "adarshsreedhar", href: "https://bugcrowd.com/h/adarshsreedhar" },
-  { name: "YesWeHack", group: "Bounty platform", handle: "adarshsreedhar", href: "https://yeswehack.com/hunters/adarshsreedhar" },
+  { name: "YesWeHack", group: "Bounty platform", handle: "adarshsreedhar" },
 ];
