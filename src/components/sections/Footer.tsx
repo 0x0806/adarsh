@@ -17,7 +17,7 @@ export default function Footer() {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center text-dim underline decoration-transparent underline-offset-4 transition-colors hover:text-bone hover:decoration-signal"
+                className="inline-flex min-h-11 min-w-11 items-center justify-center text-dim underline decoration-transparent underline-offset-4 transition-colors hover:text-bone hover:decoration-signal"
               >
                 {s.label}
               </a>

@@ -13,7 +13,6 @@ const counts = Object.entries(
 export default function Hero() {
   return (
     <section id="top" className="relative flex min-h-svh items-center overflow-hidden pt-24 pb-16">
-      <div aria-hidden="true" className="grid-bg pointer-events-none absolute inset-0" />
       <div className="wrap relative grid items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]">
         <div>
           <p className="enter inline-flex items-center gap-2 rounded-full border border-line bg-panel px-3.5 py-1.5 text-sm text-dim" style={{ "--i": 0 } as React.CSSProperties}>
@@ -37,7 +36,7 @@ export default function Hero() {
           </p>
 
           <p className="enter mt-6 max-w-xl text-[15px] leading-relaxed" style={{ "--i": 2 } as React.CSSProperties}>
-            <a href="#recognition" className="font-semibold underline decoration-signal decoration-2 underline-offset-4 transition-colors hover:text-signal">
+            <a href="#recognition" className="inline-block py-3 font-semibold underline decoration-signal decoration-2 underline-offset-4 transition-colors hover:text-signal">
               India Book of Records achiever
             </a>
             <span className="text-dim"> for finding 119 critical web vulnerabilities in 3 hours.</span>
