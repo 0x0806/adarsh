@@ -31,7 +31,6 @@ export const projects: Project[] = [
   { name: "PixelForge", category: "Apps", tags: ["Image", "Tool", "Utility"], href: "https://github.com/0x0806/PixelForge", description: "Image manipulation and creation tool" },
   { name: "Hack-Toolkit", category: "Apps", tags: ["Automation", "Tools", "Scripts"], href: "https://github.com/0x0806/Hack-Toolkit", description: "Comprehensive hacking tools automation script" },
   { name: "scripts", category: "Apps", tags: ["Scripts", "Automation", "Utility"], href: "https://github.com/0x0806/scripts", description: "Collection of useful security scripts" },
-  { name: "thriii", category: "Apps", tags: ["Tool", "Utility", "Security"], href: "https://github.com/0x0806/thriii", description: "Security utility tool" },
   { name: "NIGHTMARE-SURVIVAL", category: "Apps", tags: ["Game", "Security", "Fun"], href: "https://github.com/0x0806/NIGHTMARE-SURVIVAL", description: "Security-themed game project" },
   { name: "flipclock", category: "Apps", tags: ["UI", "Clock", "Design"], href: "https://github.com/0x0806/flipclock", description: "Stylish flip clock application" },
   { name: "wifi-arsenal", category: "Wireless & Hardware", tags: ["WiFi", "Python", "Pentest"], href: "https://github.com/0x0806/wifi-arsenal", description: "WiFi penetration testing framework for security professionals" },
