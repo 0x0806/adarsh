@@ -1,181 +1,115 @@
-"use client";
+import Image from "next/image";
+import { ArrowRight, Github, Linkedin, Twitter, Instagram, MapPin } from "lucide-react";
+import DecryptedText from "@/components/fx/DecryptedText";
+import { projects } from "@/data/projects";
+import { site } from "@/data/site";
 
-import { motion } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Twitter, Instagram, Sparkles } from 'lucide-react';
-import Image from 'next/image';
+const icons = { GitHub: Github, LinkedIn: Linkedin, X: Twitter, Instagram } as const;
 
-const Hero = () => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+const counts = Object.entries(
+  projects.reduce<Record<string, number>>((a, p) => ((a[p.category] = (a[p.category] ?? 0) + 1), a), {})
+);
 
-  const work = () => scrollToSection('projects');
-  const contact = () => scrollToSection('contact');
-
+export default function Hero() {
   return (
-    <section className="min-h-screen pt-32 pb-20 px-6 md:px-12 lg:px-20 relative overflow-hidden bg-background">
-      {/* Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-purple-200 rounded-full blur-[100px] opacity-30" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-200 rounded-full blur-[100px] opacity-30" />
-      </div>
+    <section id="top" className="relative flex min-h-svh items-center overflow-hidden pt-24 pb-16">
+      <div aria-hidden="true" className="grid-bg pointer-events-none absolute inset-0" />
+      <div className="wrap relative grid items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]">
+        <div>
+          <p className="enter inline-flex items-center gap-2 rounded-full border border-line bg-panel px-3.5 py-1.5 text-sm text-dim" style={{ "--i": 0 } as React.CSSProperties}>
+            <span className="size-2 rounded-full bg-emerald-400" aria-hidden="true" />
+            Open to security engagements
+          </p>
 
-      <div className="w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
-
-        {/* Left Column - Text Content */}
-        <div className="space-y-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 border border-gray-200 backdrop-blur-sm"
+          <h1
+            className="enter mt-7 text-[clamp(2.75rem,7vw,5.5rem)] leading-[0.98] font-semibold"
+            style={{ "--i": 1 } as React.CSSProperties}
           >
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+            I find the weak points before{" "}
+            <span className="text-signal">
+              <DecryptedText text="attackers do." />
             </span>
-            <span className="text-sm font-medium text-gray-600">Available for Work</span>
-          </motion.div>
+          </h1>
 
-          <div className="space-y-2">
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-6xl md:text-7xl lg:text-8xl font-black text-black leading-[0.9] tracking-tighter"
-            >
-              Securing<br />
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-red-600 to-orange-600">Digital</span><br />
-              Frontiers
-            </motion.h1>
+          <p className="enter mt-7 max-w-xl text-lg leading-relaxed text-dim" style={{ "--i": 2 } as React.CSSProperties}>
+            {site.name} is a {site.role.toLowerCase()} doing penetration testing, vulnerability research and
+            security consulting, and building open-source tools for the rest of the field.
+          </p>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl text-gray-500 max-w-lg font-medium"
+          <div className="enter mt-9 flex flex-wrap gap-3" style={{ "--i": 3 } as React.CSSProperties}>
+            <a
+              href="#projects"
+              className="group inline-flex items-center gap-2 rounded-full bg-signal px-6 py-3.5 font-semibold text-signal-ink transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0"
             >
-              I'm Adarsh S, a Senior Cybersecurity Specialist passionate about security research, penetration testing, and building security tools that protect digital infrastructure.
-            </motion.p>
+              See the projects
+              <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center rounded-full border border-line px-6 py-3.5 font-semibold transition-colors hover:border-dim hover:bg-panel"
+            >
+              Send a message
+            </a>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-wrap gap-4"
-          >
-            <button className="px-8 py-4 bg-black text-white rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-2 group" onClick={work}>
-              View My Work
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="px-8 py-4 bg-white border border-gray-200 text-black rounded-full font-bold text-lg hover:bg-gray-50 transition-colors" onClick={contact}>
-              Contact Me
-            </button>
-          </motion.div>
-
-          {/* Socials */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="pt-8 flex gap-6"
-          >
-            <a href="https://github.com/0x0806" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors transform hover:scale-110 duration-300">
-              <Github className="w-6 h-6" />
-            </a>
-            <a href="https://www.linkedin.com/in/adarsh-s-9b1162171/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors transform hover:scale-110 duration-300">
-              <Linkedin className="w-6 h-6" />
-            </a>
-            <a href="https://x.com/0X0806x" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors transform hover:scale-110 duration-300">
-              <Twitter className="w-6 h-6" />
-            </a>
-            <a href="https://instagram.com/0X0806" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors transform hover:scale-110 duration-300">
-              <Instagram className="w-6 h-6" />
-            </a>
-          </motion.div>
+          <ul className="enter mt-10 flex gap-2" aria-label="Profiles" style={{ "--i": 4 } as React.CSSProperties}>
+            {site.socials.map((s) => {
+              const Icon = icons[s.label as keyof typeof icons];
+              return (
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    className="grid size-11 place-items-center rounded-full border border-line text-dim transition-colors hover:border-dim hover:text-bone"
+                  >
+                    <Icon className="size-5" aria-hidden="true" />
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
         </div>
 
-        {/* Right Column - Profile Card */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative"
-        >
-          <div className="relative z-10 bg-[#2A2A2A] rounded-[2.5rem] p-8 md:p-10 shadow-2xl text-white overflow-hidden group">
-            {/* Card Header */}
-            <div className="flex justify-between items-start mb-8">
-              <div>
-                <h2 className="text-3xl font-black leading-tight">Adarsh S</h2>
-                <div className="flex items-center gap-2 mt-2 text-gray-400 font-medium text-sm">
-                  <span className="text-red-500">📍</span> INDIA
-                </div>
-              </div>
-              <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md border border-white/10 relative overflow-hidden">
-                <Image
-                  src="https://img.icons8.com/fluency/96/shield.png"
-                  alt="Security Shield"
-                  fill
-                  sizes="48px"
-                  className="object-contain p-2"
-                />
-              </div>
-            </div>
-
-            {/* Profile Image Area */}
-            <div className="relative aspect-square rounded-3xl overflow-hidden mb-8 bg-gray-800">
-              {/* Replace with actual image */}
-              <div className="absolute inset-0 bg-linear-to-b from-transparent to-black/50 z-10" />
+        <div className="enter" style={{ "--i": 3 } as React.CSSProperties}>
+          <div className="overflow-hidden rounded-2xl border border-line bg-panel shadow-[0_30px_60px_-30px_rgb(0_0_0/0.8)]">
+            <div className="flex items-center gap-4 border-b border-line p-5">
               <Image
-                src="https://github.com/0x0806.png"
-                alt="Adarsh S"
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+                src={site.avatar}
+                alt="Portrait of Adarsh S"
+                width={64}
+                height={64}
+                priority
+                unoptimized
+                className="size-16 rounded-full border border-line object-cover"
               />
+              <div>
+                <p className="font-display text-xl font-semibold">{site.name}</p>
+                <p className="mt-0.5 flex items-center gap-1.5 text-sm text-dim">
+                  <MapPin className="size-3.5" aria-hidden="true" /> {site.location}
+                </p>
+              </div>
             </div>
-
-            {/* Tags */}
-            <div className="flex gap-3 mb-8">
-              <span className="px-4 py-2 rounded-full bg-white/10 border border-white/5 text-xs font-bold tracking-wider uppercase flex items-center gap-2">
-                <Image
-                  src="https://img.icons8.com/fluency/96/hacker.png"
-                  alt="Hacker"
-                  width={16}
-                  height={16}
-                  className="w-4 h-4 object-contain"
-                />
-                Penetration Testing
-              </span>
-              <span className="px-4 py-2 rounded-full bg-white/10 border border-white/5 text-xs font-bold tracking-wider uppercase flex items-center gap-2">
-                <Image
-                  src="https://img.icons8.com/fluency/96/lock.png"
-                  alt="Lock"
-                  width={16}
-                  height={16}
-                  className="w-4 h-4 object-contain"
-                />
-                Security Research
-              </span>
-            </div>
-
-            {/* Footer */}
-            <div className="flex items-center gap-3 text-blue-400 font-bold text-sm">
-              <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-              Available for Projects
+            <div className="p-5 font-mono text-[13px] leading-7">
+              <p className="text-dim">
+                <span className="text-signal">$</span> ls ~/projects --by-category
+              </p>
+              <ul className="mt-2">
+                {counts.map(([cat, n]) => (
+                  <li key={cat} className="flex items-baseline justify-between border-b border-dashed border-line py-1 last:border-0">
+                    <span>{cat}</span>
+                    <span className="text-dim tabular-nums">{n}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-3 text-dim">
+                <span className="text-signal">$</span> <span className="caret inline-block h-4 w-2 translate-y-0.5 bg-bone" aria-hidden="true" />
+              </p>
             </div>
           </div>
-
-          {/* Decorative Elements behind card */}
-          <div className="absolute top-10 right-10 w-full h-full bg-gray-200 rounded-[2.5rem] -z-10 transform rotate-6 opacity-0 lg:opacity-100 transition-opacity" />
-        </motion.div>
+        </div>
       </div>
     </section>
   );
-};
-
-export default Hero;
+}
