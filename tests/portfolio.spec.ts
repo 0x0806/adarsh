@@ -25,10 +25,10 @@ test("project filter and show-all work", async ({ page }) => {
   const cards = page.locator("[data-testid=project-grid] a");
   await expect(cards).toHaveCount(12);
   await page.getByRole("button", { name: /Show all/ }).click();
-  await expect(cards).toHaveCount(43);
-  await page.getByRole("button", { name: "Vulnerable Apps" }).click();
-  await expect(cards).toHaveCount(4);
-  await expect(page.getByRole("button", { name: "Vulnerable Apps" })).toHaveAttribute("aria-pressed", "true");
+  await expect(cards).toHaveCount(30);
+  await page.getByRole("button", { name: "Wireless & Hardware" }).click();
+  await expect(cards).toHaveCount(3);
+  await expect(page.getByRole("button", { name: "Wireless & Hardware" })).toHaveAttribute("aria-pressed", "true");
 });
 
 test("every project link goes to the 0x0806 GitHub account", async ({ page }) => {
@@ -99,10 +99,10 @@ test("has structured data, canonical and skip-friendly landmarks", async ({ page
   await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
 });
 
-test("client work links to the three live sites", async ({ page }) => {
+test("client work links to the two live sites", async ({ page }) => {
   await page.goto("/");
   const hrefs = await page.locator("[data-testid=works-grid] h3 + p + div a:first-child").evaluateAll((a) => a.map((x) => (x as HTMLAnchorElement).href));
-  expect(hrefs).toEqual(["https://www.energyhub.cafe/", "https://lifestylegym.fit/", "https://thriiievents.com/"]);
+  expect(hrefs).toEqual(["https://www.energyhub.cafe/", "https://lifestylegym.fit/"]);
 });
 
 test("recognition lists the vendor halls of fame and bounty platforms", async ({ page }) => {
@@ -122,4 +122,11 @@ test("hero leads with the IBR record and links to recognition", async ({ page })
   await page.goto("/");
   await page.getByRole("link", { name: "India Book of Records achiever" }).click();
   await expect(page.locator("#recognition")).toBeInViewport();
+});
+
+test("no forks and no THRIII in the featured work", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("#works")).not.toContainText("THRIII");
+  await page.getByRole("button", { name: /Show all/ }).click();
+  await expect(page.locator("[data-testid=project-grid]")).not.toContainText("Fork");
 });

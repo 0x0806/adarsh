@@ -31,14 +31,4 @@ export const works: Work[] = [
     place: "Sharjah, UAE",
     summary: "A 24/7 gym with personal training, group classes, online coaching and a free demo booking.",
   },
-  {
-    name: "THRIII Events",
-    url: "https://thriiievents.com/",
-    host: "thriiievents.com",
-    image: "/works/thriii.jpg",
-    imageAlt: "THRIII Events website share image",
-    kind: "Events",
-    place: "Ajman, UAE",
-    summary: "Weddings, corporate events and private celebrations, with lighting, decor and production under one team.",
-  },
 ];
