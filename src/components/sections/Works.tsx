@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowUpRight, Github } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { works } from "@/data/works";
 
 export default function Works() {
@@ -36,7 +36,7 @@ export default function Works() {
                 </p>
                 <h3 className="mt-3 text-2xl font-semibold">{w.name}</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-dim">{w.summary}</p>
-                <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-1 pt-6">
+                <div className="mt-auto pt-6">
                   <a
                     href={w.url}
                     target="_blank"
@@ -44,14 +44,6 @@ export default function Works() {
                     className="inline-flex min-h-11 items-center gap-1.5 font-semibold underline decoration-signal decoration-2 underline-offset-4 transition-colors hover:text-signal"
                   >
                     {w.host} <ArrowUpRight className="size-4" aria-hidden="true" />
-                  </a>
-                  <a
-                    href={w.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-11 items-center gap-1.5 text-sm text-dim transition-colors hover:text-bone"
-                  >
-                    <Github className="size-4" aria-hidden="true" /> Source
                   </a>
                 </div>
               </div>
